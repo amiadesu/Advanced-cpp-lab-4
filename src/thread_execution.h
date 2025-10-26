@@ -11,19 +11,11 @@ using namespace std;
 
 using duration = chrono::system_clock::duration;
 
-duration execute_timeit(DataStruct& dataStruct, ifstream& file) {
-	return timeit(
-		[&dataStruct, &file]() {
-			execute_ops(dataStruct, file);
-		}
-	);
-}
-
 void execute_ops(DataStruct& dataStruct, ifstream& file) {
 	string op;
 	while (file >> op) {
 		if (op == "write") {
-			int field, value; cin >> field >> value;
+			int field, value; file >> field >> value;
 			if (field == 0) {
 				dataStruct.set0(value);
 			}
@@ -35,7 +27,7 @@ void execute_ops(DataStruct& dataStruct, ifstream& file) {
 			}
 		}
 		else if (op == "read") {
-			int field; cin >> field;
+			int field; file >> field;
 			if (field == 0) {
 				dataStruct.get0();
 			}
@@ -50,6 +42,14 @@ void execute_ops(DataStruct& dataStruct, ifstream& file) {
 			string res = dataStruct;
 		}
 	}
+}
+
+duration execute_timeit(DataStruct& dataStruct, ifstream& file) {
+	return timeit(
+		[&dataStruct, &file]() {
+			execute_ops(dataStruct, file);
+		}
+	);
 }
 
 auto execute_multithreaded(const vector<string>& file_names) {

@@ -17,7 +17,7 @@ int main() {
 		}
 		else {
 			vector<string> file_names;
-			for (int i = 1; i <= threads_amount; i++) {
+			for (int i = 0; i < threads_amount; i++) {
 				string file_name = format("demo_code_{}.txt", i);
 				file_names.push_back(file_name);
 			}
@@ -25,7 +25,7 @@ int main() {
 			auto results = execute_multithreaded(file_names);
 
 			for (int i = 0; i < threads_amount; i++) {
-				cout << "Thread " << i + 1 << ": " << results[i] << endl;
+				cout << "Thread " << i + 1 << ": " << (results[i] / 10000000.0).count() << "s" << endl;
 			}
 		}
 	}
