@@ -6,9 +6,10 @@ class DataStruct {
 public:
     using value_type = int;
 private:
-    mutable std::mutex mtx0;
+    mutable std::shared_mutex mtx0;
     mutable std::shared_mutex mtx1;
-    mutable std::mutex mtx2;
+    mutable std::shared_mutex mtx2;
+
     value_type field0 = 0;
     value_type field1 = 0;
     value_type field2 = 0;
