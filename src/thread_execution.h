@@ -1,8 +1,8 @@
+#pragma once
+
 #include <vector>
 #include <fstream>
-#include <thread>
 #include <future>
-#include <string>
 
 #include "timeit.h"
 #include "struct.h"
